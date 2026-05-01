@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="mr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lakshya Academy | Admission Form / प्रवेश अर्ज</title>
+  <style>
+    :root {
+      --primary: #1a2a6c;
+      --secondary: #b21f1f;
+      --accent: #fdbb2d;
+      --light: #f8f9fa;
+      --dark: #0f172a;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      color: #333;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 5%;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo-area { text-align: center; width: 100%; }
+
+    .logo-area img {
+      display: block;
+      margin: 0 auto 5px;
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+    }
+
+    .logo-area h1 {
+      margin: 0;
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 28px;
+      font-weight: 900;
+    }
+
+    .tagline {
+      margin: 0;
+      color: var(--secondary);
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+
+    .hero {
+      background: linear-gradient(45deg, rgba(26, 42, 108, 0.9), rgba(178, 31, 31, 0.9));
+      color: white;
+      text-align: center;
+      padding: 60px 20px 80px;
+      clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+    }
+
+    .hero h2 { font-size: 40px; margin: 0 0 10px; }
+    .hero p { font-size: 18px; opacity: 0.95; margin: 0; }
+
+    .container {
+      width: 90%;
+      max-width: 800px;
+      margin: -40px auto 60px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .form-card {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+    }
+
+    .form-card h3 {
+      color: var(--primary);
+      border-left: 6px solid var(--accent);
+      padding-left: 15px;
+      margin: 30px 0 20px;
+      font-weight: 800;
+      text-transform: uppercase;
+      font-size: 20px;
+    }
+
+    .form-card h3:first-child { margin-top: 0; }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .field.full { grid-column: 1 / -1; }
+
+    label {
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 6px;
+      font-size: 14px;
+    }
+
+    label .req { color: var(--secondary); }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    input[type="date"],
+    select,
+    textarea {
+      padding: 12px 14px;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 15px;
+      font-family: inherit;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: #fafbfc;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      background: white;
+      box-shadow: 0 0 0 3px rgba(26, 42, 108, 0.1);
+    }
+
+    textarea { resize: vertical; min-height: 90px; }
+
+    .radio-group, .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .radio-group label, .checkbox-group label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #f1f5f9;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 500;
+      font-size: 14px;
+      transition: 0.2s;
+    }
+
+    .radio-group label:hover, .checkbox-group label:hover {
+      background: #e2e8f0;
+    }
+
+    .radio-group input, .checkbox-group input {
+      accent-color: var(--primary);
+    }
+
+    .submit-row {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    button[type="submit"] {
+      background: linear-gradient(to right, var(--primary), var(--secondary));
+      color: white;
+      border: none;
+      padding: 16px 50px;
+      font-size: 17px;
+      font-weight: 800;
+      border-radius: 50px;
+      cursor: pointer;
+      letter-spacing: 1px;
+      transition: 0.3s;
+      box-shadow: 0 8px 20px rgba(26, 42, 108, 0.25);
+    }
+
+    button[type="submit"]:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(26, 42, 108, 0.35);
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-bottom: 20px;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .back-link:hover { text-decoration: underline; }
+
+    .honeypot { display: none; }
+
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 40px 5%;
+      text-align: center;
+    }
+
+    footer p { margin: 5px 0; opacity: 0.85; }
+
+    @media (max-width: 600px) {
+      .hero h2 { font-size: 30px; }
+      .form-card { padding: 25px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo-area">
+    <img src="logo.jpeg" alt="Lakshya Academy Logo">
+    <h1>Lakshya Academy</h1>
+    <p class="tagline">तुमच्या सरकारी नोकरीच्या स्वप्नाला योग्य दिशा!</p>
+  </div>
+</header>
+
+<section class="hero">
+  <h2>📝 प्रवेश अर्ज / Admission Form</h2>
+  <p>खालील माहिती भरून प्रवेश अर्ज सादर करा. आम्ही लवकरच तुमच्याशी संपर्क करू.</p>
+</section>
+
+<div class="container">
+  <a href="index.html" class="back-link">← मुख्य पानावर परत जा</a>
+
+  <div class="form-card">
+    <form name="admission" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you">
+      <input type="hidden" name="form-name" value="admission" />
+      <p class="honeypot">
+        <label>Don't fill this out: <input name="bot-field" /></label>
+      </p>
+
+      <h3>विद्यार्थी माहिती / Student Details</h3>
+      <div class="form-grid">
+        <div class="field">
+          <label for="full_name">पूर्ण नाव / Full Name <span class="req">*</span></label>
+          <input type="text" id="full_name" name="full_name" required />
+        </div>
+
+        <div class="field">
+          <label for="father_name">वडिलांचे नाव / Father's Name <span class="req">*</span></label>
+          <input type="text" id="father_name" name="father_name" required />
+        </div>
+
+        <div class="field">
+          <label for="dob">जन्म तारीख / Date of Birth <span class="req">*</span></label>
+          <input type="date" id="dob" name="dob" required />
+        </div>
+
+        <div class="field">
+          <label>लिंग / Gender <span class="req">*</span></label>
+          <div class="radio-group">
+            <label><input type="radio" name="gender" value="Male" required /> पुरुष</label>
+            <label><input type="radio" name="gender" value="Female" /> स्त्री</label>
+            <label><input type="radio" name="gender" value="Other" /> इतर</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="category">प्रवर्ग / Category</label>
+          <select id="category" name="category">
+            <option value="">-- निवडा --</option>
+            <option value="Open">Open</option>
+            <option value="OBC">OBC</option>
+            <option value="SC">SC</option>
+            <option value="ST">ST</option>
+            <option value="VJNT">VJNT</option>
+            <option value="SBC">SBC</option>
+            <option value="EWS">EWS</option>
+            <option value="Other">इतर</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="qualification">शैक्षणिक पात्रता / Qualification <span class="req">*</span></label>
+          <input type="text" id="qualification" name="qualification" placeholder="उदा. B.A., 12th, Graduation" required />
+        </div>
+      </div>
+
+      <h3>संपर्क माहिती / Contact Details</h3>
+      <div class="form-grid">
+        <div class="field">
+          <label for="mobile">मोबाईल नंबर / Mobile Number <span class="req">*</span></label>
+          <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" maxlength="10" placeholder="10-digit number" required />
+        </div>
+
+        <div class="field">
+          <label for="alt_mobile">पर्यायी मोबाईल / Alternate Mobile</label>
+          <input type="tel" id="alt_mobile" name="alt_mobile" pattern="[0-9]{10}" maxlength="10" />
+        </div>
+
+        <div class="field">
+          <label for="email">ईमेल / Email</label>
+          <input type="email" id="email" name="email" />
+        </div>
+
+        <div class="field">
+          <label for="city">शहर / गाव / City / Village <span class="req">*</span></label>
+          <input type="text" id="city" name="city" required />
+        </div>
+
+        <div class="field full">
+          <label for="address">पूर्ण पत्ता / Full Address <span class="req">*</span></label>
+          <textarea id="address" name="address" rows="2" required></textarea>
+        </div>
+      </div>
+
+      <h3>कोर्स निवड / Course Selection</h3>
+      <div class="form-grid">
+        <div class="field full">
+          <label>तुम्ही कोणत्या कोर्ससाठी प्रवेश घेऊ इच्छिता? <span class="req">*</span></label>
+          <div class="radio-group">
+            <label><input type="radio" name="course" value="MPSC" required /> MPSC</label>
+            <label><input type="radio" name="course" value="Police Bharti" /> Police Bharti</label>
+            <label><input type="radio" name="course" value="PSI/STI/ASO" /> PSI / STI / ASO</label>
+            <label><input type="radio" name="course" value="Banking" /> Banking</label>
+            <label><input type="radio" name="course" value="Saral Seva" /> Saral Seva</label>
+            <label><input type="radio" name="course" value="Other" /> इतर</label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="batch">बॅच प्राधान्य / Batch Preference</label>
+          <select id="batch" name="batch">
+            <option value="">-- निवडा --</option>
+            <option value="Morning">Morning (सकाळ)</option>
+            <option value="Afternoon">Afternoon (दुपार)</option>
+            <option value="Evening">Evening (संध्याकाळ)</option>
+            <option value="Weekend">Weekend</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="how_heard">तुम्हाला आमच्याबद्दल कसे कळले?</label>
+          <select id="how_heard" name="how_heard">
+            <option value="">-- निवडा --</option>
+            <option value="Friend">मित्र / नातेवाईक</option>
+            <option value="Social Media">Social Media</option>
+            <option value="Website">Website</option>
+            <option value="Newspaper">Newspaper / Pamphlet</option>
+            <option value="Other">इतर</option>
+          </select>
+        </div>
+
+        <div class="field full">
+          <label for="message">अतिरिक्त माहिती / Additional Message</label>
+          <textarea id="message" name="message" rows="3" placeholder="तुमचे प्रश्न किंवा माहिती लिहा..."></textarea>
+        </div>
+      </div>
+
+      <div class="submit-row">
+        <button type="submit">अर्ज सादर करा / Submit Application</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<footer>
+  <p>📞 +91 70303 04770 &nbsp; | &nbsp; +91 93738 56768</p>
+  <p>✉️ sonawaneanant9@gmail.com</p>
+  <p style="margin-top: 20px; font-size: 13px; opacity: 0.6;">© 2026 Lakshya Academy. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
